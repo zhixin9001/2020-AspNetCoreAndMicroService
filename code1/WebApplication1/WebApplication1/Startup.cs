@@ -46,18 +46,18 @@ namespace WebApplication1
         //启动后执行
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IOptions<AppSetting> appOption)
         {
-            var appSetting = new AppSetting();
-            _config.Bind(appSetting);   //全部绑定
+            //var appSetting = new AppSetting();
+            //_config.Bind(appSetting);   //全部绑定
 
-            var webSetting = new AppSetting();
-            _config.GetSection("WebSetting").Bind(webSetting);  //部分绑定
+            //var webSetting = new AppSetting();
+            //_config.GetSection("WebSetting").Bind(webSetting);  //部分绑定
 
-            app.Run(async context =>
-            {
-                var connStr = _config["connectionString"];
-                var c1 = _config["WebSetting:title"]; //通用方法，适合少量配置
-                await context.Response.WriteAsync($"{appOption.Value.ConnectionString} - {appSetting.ConnectionString} - {connStr} -  {c1}");
-            });
+            //app.Run(async context =>
+            //{
+            //    var connStr = _config["connectionString"];
+            //    var c1 = _config["WebSetting:title"]; //通用方法，适合少量配置
+            //    await context.Response.WriteAsync($"{appOption.Value.ConnectionString} - {appSetting.ConnectionString} - {connStr} -  {c1}");
+            //});
 
             app.Use(async (context, next) =>  //有next
             {

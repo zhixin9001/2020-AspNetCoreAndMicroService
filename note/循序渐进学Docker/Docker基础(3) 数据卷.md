@@ -18,7 +18,7 @@ Docker提供了数据卷的方式来持久话容器产生的数据，通过数�
 ### 创建数据卷
 如果不指定host-dir，Docker也会在容器内部创建目录
 ```
-$ docker run -it --rm -v /volume1 --name testbox docker.neg/neso/busybox
+$ docker run -it --rm -v /volume1 --name testbox busybox
 ```
 在另一个终端执行inspect命令可以看到这种方式下，Docker会在Host的/var/lib/docker/volumes/目录生成一个随机的目录来挂载/volume1。
 ```
@@ -80,6 +80,42 @@ docker run -it --rm -v /home/dotnet2/testzzx.txt:/volume1/testzzx.txt:ro --name 
 这种挂载Host文件的方式可用来在Host与容器之间共享配置文件，这样只需在Host修改配置，所有挂载的容器都会生效。
 
 ### 数据卷容器
+数据卷容器提供了一种在容器间共享数据的更强大的方式。
+
+首先创建一个命名的数据卷容器供其他容器挂载。
+```
+$ docker run -it --rm -v /volume1 --name testbox docker.neg/neso/busybox
+```
+
+挂载容器使用--volumes-from参数
+```
+$ docker run -it --rm --volumes-from testbox --name testboxvf1 docker.neg/neso/busybox
+```
+这个容器启动后也可以看到volume1目录，而且在数据卷容器的volume1进行的操作在testboxvf1容器可以即时生效。
+可以同时使用多个--volumes-from参数，从多个容器挂载多个数据卷。
+
+此外还可以从其他已经挂载容器卷的容器（如testboxvf1）挂载数据卷：
+```
+$ docker run -it --rm --volumes-from testboxvf1 --name testboxvf2 docker.neg/neso/busybox
+```
+在容器testboxvf2内部也出现了volume1目录，如果之前在数据卷容器或者testboxvf1新建了文件，在这里可以读取、修改
+
+如果删除挂载了数据卷的容器（包括初始的testbox容器和其他的容器testboxvf1、testboxvf2），数据卷并不会被删除。如果想删除该数据卷，需要在删除最后一个引用该数据卷的时候调用*docker rm -v*显式删除数据卷。
+
+```
+$ docker run -it --rm --volumes-from testbox -v $(pwd):/backup --name testboxbak docker.neg/neso/busybox tar cvf /backup/backup.tar /volume1
+```
+
+恢复
+```
+$ docker run -it --rm -v /volume1 --name testbox1 docker.neg/neso/busybox
+```
+```
+$ docker run -it --rm --volumes-from testbox1 -v $(pwd):/volume1 --name testboxbak1 docker.neg/neso/busybox tar xvf backup.tar
+```
+
+
+
 
 参考资料
 李金榜 尹烨 刘天斯 陈纯 著 《循序渐进学Docker》

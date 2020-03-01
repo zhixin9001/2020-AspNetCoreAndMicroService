@@ -23,7 +23,7 @@ $ docker run -it --rm -v /volume1 --name testbox busybox
 ```
 在另一个终端执行inspect命令可以看到这种方式下，Docker会在Host的/var/lib/docker/volumes/目录生成一个随机的目录来挂载/volume1。
 ```
-$ docker inspect -f {{.Mounts}} docker.neg/neso/busybox
+$ docker inspect -f {{.Mounts}} busybox
 ```
 ```
 "Mounts": [
@@ -97,7 +97,7 @@ $ docker run -it --rm --volumes-from testbox --name testboxvf1 busybox
 
 此外还可以从其他已经挂载容器卷的容器（如testboxvf1）挂载数据卷：
 ```
-$ docker run -it --rm --volumes-from testboxvf1 --name testboxvf2 docker.neg/neso/busybox
+$ docker run -it --rm --volumes-from testboxvf1 --name testboxvf2 busybox
 ```
 在容器testboxvf2内部也出现了volume1目录，如果之前在数据卷容器或者testboxvf1新建了文件，在这里可以读取、修改
 

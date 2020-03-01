@@ -84,12 +84,12 @@ docker run -it --rm -v /home/dotnet2/testzzx.txt:/volume1/testzzx.txt:ro --name 
 
 首先创建一个命名的数据卷容器供其他容器挂载。
 ```
-$ docker run -it --rm -v /volume1 --name testbox docker.neg/neso/busybox
+$ docker run -it --rm -v /volume1 --name testbox busybox
 ```
 
 挂载容器使用--volumes-from参数
 ```
-$ docker run -it --rm --volumes-from testbox --name testboxvf1 docker.neg/neso/busybox
+$ docker run -it --rm --volumes-from testbox --name testboxvf1 busybox
 ```
 这个容器启动后也可以看到volume1目录，而且在数据卷容器的volume1进行的操作在testboxvf1容器可以即时生效。
 可以同时使用多个--volumes-from参数，从多个容器挂载多个数据卷。
@@ -103,15 +103,15 @@ $ docker run -it --rm --volumes-from testboxvf1 --name testboxvf2 docker.neg/nes
 如果删除挂载了数据卷的容器（包括初始的testbox容器和其他的容器testboxvf1、testboxvf2），数据卷并不会被删除。如果想删除该数据卷，需要在删除最后一个引用该数据卷的时候调用*docker rm -v*显式删除数据卷。
 
 ```
-$ docker run -it --rm --volumes-from testbox -v $(pwd):/backup --name testboxbak docker.neg/neso/busybox tar cvf /backup/backup.tar /volume1
+$ docker run -it --rm --volumes-from testbox -v $(pwd):/backup --name testboxbak busybox tar cvf /backup/backup.tar /volume1
 ```
 
 恢复
 ```
-$ docker run -it --rm -v /volume1 --name testbox1 docker.neg/neso/busybox
+$ docker run -it --rm -v /volume1 --name testbox busybox
 ```
 ```
-$ docker run -it --rm --volumes-from testbox1 -v $(pwd):/volume1 --name testboxbak1 docker.neg/neso/busybox tar xvf backup.tar
+$ docker run -it --rm --volumes-from testbox -v $(pwd):/volume1 --name testboxbak1 busybox tar xvf backup.tar
 ```
 
 

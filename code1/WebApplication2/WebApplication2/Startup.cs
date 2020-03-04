@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApplication2.Persistence;
 
 namespace WebApplication2
 {
@@ -16,6 +17,8 @@ namespace WebApplication2
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+            services.AddScoped<ITeamRepository, MemoryTeamRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,10 +38,11 @@ namespace WebApplication2
             //        await context.Response.WriteAsync("Hello World!");
             //    });
             //});
-            app.Run(async context =>
-            {
-                await context.Response.WriteAsync("Hello world1");
-            });
+            //app.Run(async context =>
+            //{
+            //    await context.Response.WriteAsync("Hello world1");
+            //});
+            app.UseMvc();
         }
     }
 }

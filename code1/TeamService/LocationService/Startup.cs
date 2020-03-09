@@ -7,6 +7,8 @@ using LocationService.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -14,11 +16,42 @@ namespace LocationService
 {
     public class Startup
     {
+        public static IConfigurationRoot Configuration { get; set; }
+
+        public Startup()
+        {
+            Configuration = InitializeConfiguration();
+        }
+
+        public static IConfigurationRoot InitializeConfiguration()
+        {
+            var builder = new ConfigurationBuilder()
+               .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.json", optional: true)
+               .AddEnvironmentVariables();
+            return builder.Build();
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ILocationRecordRepository, MemoryLocationRecordRepository>();
+            var transient = true;
+            if (Configuration.GetSection("transient") != null)
+            {
+                transient = bool.Parse(Configuration.GetSection("transient").Value);
+            }
+            if (transient)
+            {
+                services.AddScoped<ILocationRecordRepository, MemoryLocationRecordRepository>();
+            }
+            else
+            {
+                var connectionString = Configuration.GetSection("postgres:cstr").Value;
+                services.AddEntityFrameworkNpgsql().AddDbContext<LocationDBContext>(options =>
+                    options.UseNpgsql(connectionString));
+                services.AddScoped<ILocationRecordRepository, LocationRecordRepository>();
+            }
             services.AddControllers();
         }
 
@@ -31,7 +64,6 @@ namespace LocationService
             }
 
             app.UseRouting();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

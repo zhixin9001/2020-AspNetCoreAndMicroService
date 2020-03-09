@@ -89,8 +89,8 @@ namespace TeamService.Tests
 
             ICollection<Member> members = (ICollection<Member>)(controller.GetMembers(teamId) as ObjectResult).Value;
             Assert.Equal(2, members.Count());
-            Assert.NotNull(members.Where(m => m.ID == firstMemberId).First().ID);
-            Assert.NotNull(members.Where(m => m.ID == secondMemberId).First().ID);
+            Assert.NotNull(members.Where(m => m.ID == firstMemberId).First());
+            Assert.NotNull(members.Where(m => m.ID == secondMemberId).First());
         }
 
         [Fact]

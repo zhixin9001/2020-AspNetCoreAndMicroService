@@ -11,16 +11,21 @@ namespace LocationService
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+		public static void Main(string[] args)
+		{
+			IConfiguration config = new ConfigurationBuilder()
+							.AddCommandLine(args)
+							.Build();
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+			Startup.Args = args;
+
+			var host = new WebHostBuilder()
+						.UseKestrel()
+						.UseStartup<Startup>()
+						.UseConfiguration(config)
+						.Build();
+
+			host.Run();
+		}
+	}
 }

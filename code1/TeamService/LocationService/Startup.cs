@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace LocationService
 {
@@ -18,17 +19,28 @@ namespace LocationService
     {
         public static IConfigurationRoot Configuration { get; set; }
 
-        public Startup()
+        public static string[] Args { get; set; } = new string[] { };
+        private ILogger logger;
+        private ILoggerFactory loggerFactory;
+
+        public Startup(IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             Configuration = InitializeConfiguration();
+
+            this.loggerFactory = loggerFactory;
+            this.loggerFactory.AddConsole(LogLevel.Information);
+            this.loggerFactory.AddDebug();
+
+            this.logger = this.loggerFactory.CreateLogger("Startup");
         }
 
-        public static IConfigurationRoot InitializeConfiguration()
+        internal static IConfigurationRoot InitializeConfiguration()
         {
             var builder = new ConfigurationBuilder()
-               .SetBasePath(System.IO.Directory.GetCurrentDirectory())
-               .AddJsonFile("appsettings.json", optional: true)
-               .AddEnvironmentVariables();
+                .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true)
+                .AddEnvironmentVariables()
+                .AddCommandLine(Startup.Args);
             return builder.Build();
         }
 

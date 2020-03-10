@@ -17,7 +17,6 @@
     },
     "LocationService": {
       "commandName": "Project",
-      "commandLineArgs": "-URLS http:*:5005",
       "environmentVariables": {
         "POSTGRES__CSTR": "SSSSS",
         "TRANSIENT": "false",

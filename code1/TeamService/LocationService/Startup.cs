@@ -23,15 +23,10 @@ namespace LocationService
         private ILogger logger;
         private ILoggerFactory loggerFactory;
 
-        public Startup(IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public Startup(ILoggerFactory loggerFactory)
         {
             Configuration = InitializeConfiguration();
 
-            this.loggerFactory = loggerFactory;
-            this.loggerFactory.AddConsole(LogLevel.Information);
-            this.loggerFactory.AddDebug();
-
-            this.logger = this.loggerFactory.CreateLogger("Startup");
         }
 
         internal static IConfigurationRoot InitializeConfiguration()

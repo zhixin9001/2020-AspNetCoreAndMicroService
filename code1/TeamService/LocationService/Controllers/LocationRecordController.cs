@@ -23,6 +23,12 @@ namespace LocationService.Controllers
             return this.Created($"/locations/{memberId}/{locationRecord.ID}", locationRecord);
         }
 
+        [HttpPost("p")]
+        public IActionResult PostLocation([FromBody]Liqud locationRecord)
+        {
+            return this.Created($"/locations/{123}/", locationRecord);
+        }
+
         [HttpGet]
         public IActionResult GetLocationsForMember(Guid memberId)
         {

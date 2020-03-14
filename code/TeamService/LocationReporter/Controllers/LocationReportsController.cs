@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LocationReporter.Events;
 using LocationReporter.Models;
+using LocationReporter.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

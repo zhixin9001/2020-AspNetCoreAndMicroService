@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamService", "TeamService\TeamService.csproj", "{B9EB450F-94EA-4796-9013-D9422DFA6793}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamService", "TeamService\TeamService.csproj", "{B9EB450F-94EA-4796-9013-D9422DFA6793}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamService.Tests", "TeamService.Tests\TeamService.Tests.csproj", "{52BE0F1B-E045-45E8-9392-E69720AB8A1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamService.Tests", "TeamService.Tests\TeamService.Tests.csproj", "{52BE0F1B-E045-45E8-9392-E69720AB8A1E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocationService", "LocationService\LocationService.csproj", "{1072FA13-B06F-4873-9B7F-8B5C84EFCB76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocationService.Tests", "LocationService.Tests\LocationService.Tests.csproj", "{F96B8759-511E-4420-B9E1-EBE1BF271FC0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocationReporter", "LocationReporter\LocationReporter.csproj", "{0792CB46-CE4E-4668-A651-4D024D24DB67}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocationReporter.Tests", "LocationReporter.Tests\LocationReporter.Tests.csproj", "{F965CBBC-EA31-4935-A231-DABE6A3BAABD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,22 @@ Global
 		{52BE0F1B-E045-45E8-9392-E69720AB8A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52BE0F1B-E045-45E8-9392-E69720AB8A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52BE0F1B-E045-45E8-9392-E69720AB8A1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1072FA13-B06F-4873-9B7F-8B5C84EFCB76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1072FA13-B06F-4873-9B7F-8B5C84EFCB76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1072FA13-B06F-4873-9B7F-8B5C84EFCB76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1072FA13-B06F-4873-9B7F-8B5C84EFCB76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F96B8759-511E-4420-B9E1-EBE1BF271FC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F96B8759-511E-4420-B9E1-EBE1BF271FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F96B8759-511E-4420-B9E1-EBE1BF271FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F96B8759-511E-4420-B9E1-EBE1BF271FC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0792CB46-CE4E-4668-A651-4D024D24DB67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0792CB46-CE4E-4668-A651-4D024D24DB67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0792CB46-CE4E-4668-A651-4D024D24DB67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0792CB46-CE4E-4668-A651-4D024D24DB67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F965CBBC-EA31-4935-A231-DABE6A3BAABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F965CBBC-EA31-4935-A231-DABE6A3BAABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F965CBBC-EA31-4935-A231-DABE6A3BAABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F965CBBC-EA31-4935-A231-DABE6A3BAABD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

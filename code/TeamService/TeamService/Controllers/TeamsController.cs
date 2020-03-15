@@ -39,6 +39,7 @@ namespace TeamService.Controllers
             }
         }
 
+        [HttpPost]
         public IActionResult CreateTeam([FromBody] Team newTeam)
         {
             repository.Add(newTeam);

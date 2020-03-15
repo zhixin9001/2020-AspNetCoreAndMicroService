@@ -44,7 +44,7 @@ namespace TeamService.Tests.Integration
             getResponse.EnsureSuccessStatusCode();
             string raw = await getResponse.Content.ReadAsStringAsync();
             List<Team> teams = JsonConvert.DeserializeObject<List<Team>>(raw); //JsonSerializer.Deserialize<List<Team>>(raw);
-            Assert.Equal(1, teams.Count());
+            Assert.Single(teams);
             Assert.Equal("Zombie", teams[0].Name);
             Assert.Equal(teamZombie.ID, teams[0].ID);
         }

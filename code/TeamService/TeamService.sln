@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocationReporter", "Locatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocationReporter.Tests", "LocationReporter.Tests\LocationReporter.Tests.csproj", "{F965CBBC-EA31-4935-A231-DABE6A3BAABD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventProcessor", "EventProcessor\EventProcessor.csproj", "{67E0D115-5A7E-4D2B-9575-4E105148AE49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F965CBBC-EA31-4935-A231-DABE6A3BAABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F965CBBC-EA31-4935-A231-DABE6A3BAABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F965CBBC-EA31-4935-A231-DABE6A3BAABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67E0D115-5A7E-4D2B-9575-4E105148AE49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67E0D115-5A7E-4D2B-9575-4E105148AE49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67E0D115-5A7E-4D2B-9575-4E105148AE49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67E0D115-5A7E-4D2B-9575-4E105148AE49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
